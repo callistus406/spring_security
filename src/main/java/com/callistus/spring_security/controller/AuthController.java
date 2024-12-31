@@ -22,6 +22,7 @@ public class AuthController {
 
     @Autowired
     JwtService jwtService;
+
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
@@ -34,15 +35,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse>  login(@RequestBody LoginDto entity) {
-        
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginDto entity) {
+
         User user = this.authService.signIn(entity);
         String token = jwtService.generateJwt(user);
         LoginResponse response = new LoginResponse().setToken(token).setExpiresIn(jwtService.getJwtExpiration());
         return ResponseEntity.ok(response);
     }
-
-  
-
 
 }

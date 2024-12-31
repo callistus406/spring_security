@@ -16,18 +16,20 @@ public class SecurityConfiguration {
     public SecurityConfiguration(JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
-    //security filter chain
+
+    
+    // security filter chain
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-        
+
                 .authorizeHttpRequests(
                         request -> request.requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
-                        .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                        .addFilterBefore( jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-        
+
     }
 }
