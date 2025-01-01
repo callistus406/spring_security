@@ -23,7 +23,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    // private final HandlerExceptionResolver exceptionResolver;
     private JwtService jwtService;
     private CustomUserDetailsService customUserDetailsService;
 
