@@ -13,4 +13,6 @@ import java.util.List;
 public interface UserRepository extends JpaRepository <User, UUID> {
 
     Optional<User> findByEmail(String email);
+
+    List<User> find();
 }
