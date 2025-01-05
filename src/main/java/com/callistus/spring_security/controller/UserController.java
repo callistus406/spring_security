@@ -31,7 +31,7 @@ public class UserController {
       public UserDto login(@RequestBody String email) {
 
         User user = authService.me(email);
-        System.out.println(user.getEmail());
+     
         UserDto userDto = new UserDto(user.getEmail(), user.getName());
         return userDto;
       }
