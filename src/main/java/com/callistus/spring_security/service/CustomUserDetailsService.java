@@ -1,6 +1,7 @@
 package com.callistus.spring_security.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,8 +27,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 
     public List<User> findAllUsers() {
-        
+
         return userRepository.find();
+    }
+
+    public Optional<User> findUserById(Integer id) {
+        
+        return this.userRepository.findById(id);
     }
 
 }
