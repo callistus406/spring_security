@@ -1,6 +1,7 @@
 package com.callistus.spring_security.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,11 @@ public class UserController {
       public List<User> getMethodName() {
         return this.customUserDetailsService.findAllUsers();
       }
+
+      @GetMapping("/users/:id")
+      public Optional<User> getMethodName(@RequestParam Integer id) {
+          return this.customUserDetailsService.findUserById(id);
+      }
+      
       
 }
